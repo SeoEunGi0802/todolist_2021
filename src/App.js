@@ -10,7 +10,9 @@ class App extends React.Component {
       title: "",
       content: "",
       startDate: null,
-      startTime: null
+      startTime: null,
+      endDate: null,
+      endTime: null
     }
   }
 
@@ -27,7 +29,8 @@ class App extends React.Component {
             format="yyyy/MM/DD"
             margin="normal"
             label="시작 예정일"
-            onChange={(value) => console.log(value)}
+            value={this.state.startDate}
+            onChange={(value) => this.setState({startDate:value})}
             style={{ width: '50%' }}
             KeyboardButtonProps={{
               'aria-label': 'change date',
@@ -37,7 +40,8 @@ class App extends React.Component {
             margin="normal"
             label="시작시간"
             variant="inline"
-            onChange={(value) => console.log(value)}
+            value={this.state.startTime}
+            onChange={(value) => this.setState({startTime:value})}
             style={{ width: '50%' }}
             KeyboardButtonProps={{
               'aria-label': 'change time',
