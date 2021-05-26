@@ -21,8 +21,14 @@ class App extends React.Component {
       <div className="App">
         <div className="header">TODO LIST</div>
         <div className="input_area">
-          <TextField label="제목" helperText="TodoList 제목" size="normal" margin="normal" fullWidth required />
-          <TextField label="상세내용" size="normal" margin="normal" fullWidth multiline />
+          <TextField label="제목" helperText="TodoList 제목" size="normal" margin="normal" fullWidth required
+            value={this.state.title}
+            onChange={(e) => this.setState({ title: e.target.value })}
+          />
+          <TextField label="상세내용" size="normal" margin="normal" fullWidth multiline
+            value={this.state.content}
+            onChange={(e) => this.setState({ content: e.target.value })}
+          />
           <KeyboardDatePicker
             disableToolbar
             variant="inline"
@@ -30,7 +36,7 @@ class App extends React.Component {
             margin="normal"
             label="시작 예정일"
             value={this.state.startDate}
-            onChange={(value) => this.setState({startDate:value})}
+            onChange={(value) => this.setState({ startDate: value })}
             style={{ width: '50%' }}
             KeyboardButtonProps={{
               'aria-label': 'change date',
@@ -41,7 +47,7 @@ class App extends React.Component {
             label="시작시간"
             variant="inline"
             value={this.state.startTime}
-            onChange={(value) => this.setState({startTime:value})}
+            onChange={(value) => this.setState({ startTime: value })}
             style={{ width: '50%' }}
             KeyboardButtonProps={{
               'aria-label': 'change time',
