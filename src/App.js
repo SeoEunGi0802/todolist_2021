@@ -1,4 +1,4 @@
-import { Button, TextField, Typography } from '@material-ui/core';
+import { Button, TextField, Typography, List, ListItem, ListItemText } from '@material-ui/core';
 import { KeyboardDatePicker, KeyboardTimePicker } from '@material-ui/pickers';
 import React from 'react';
 import SaveIcon from '@material-ui/icons/Save';
@@ -17,21 +17,38 @@ class App extends React.Component {
       endTime: null
     }
   }
+//validation에서 날짜의 검색은 제외 하였습니다.
+//minDate를 이용하여 종료날짜에 최소 날짜를 시작날짜로 주었고 시작날짜가 입력되기 전까지 종료날짜를 비활성화하여 입력을 막습니다.
+//checkValidate()함수에서 특수문자의 입력을 금지하여 sqlInjection, xss공격을 대비하도록 시도는 해보았습니다.
+  checkValidate() {
+    const {
+      title, content, startDate, startTime, endDate, endTime
+    } = this.state;
+    if (!title || !content || !startDate || !startTime || !endDate || !endTime) {
+      alert("빈칸을 채워주세요.");
+      return false
+    } else if (title.includes("<") || content.includes("<") || title.includes("+") || content.includes("+") || title.includes("=") || content.includes("=") || title.includes("{") || content.includes("{")) {
+      alert("일부 금지된 특수문자가 포함되어있습니다. ['<>', '+', '=']");
+      return false
+    }
+    return true
+  }
 
   saveTodoList() {
-    const { todoList, title, content, startDate, startTime } = this.state;
-    todoList.push({ title, content, startDate, startTime });
-    this.setState({ todoList }, () => {
+    if (this.checkValidate()) {
+      const { todoList, title, content, startDate, startTime, endDate, endTime } = this.state;
+      todoList.push({ title: title.trim(), content: content.trim(), startDate, startTime, endDate, endTime });
       this.setState({
-        todoList: [],
+        todoList,
         title: "",
         content: "",
         startDate: null,
         startTime: null,
-      })
-    });
+        endDate: null,
+        endTime: null,
+      });
+    }
   }
-
   render() {
     return (
       <div className="App">
@@ -69,6 +86,33 @@ class App extends React.Component {
               'aria-label': 'change time',
             }}
           />
+          <KeyboardDatePicker
+            disableToolbar
+            readOnly={this.state.startDate === null ? true : false}
+            variant="inline"
+            format="yyyy/MM/DD"
+            margin="normal"
+            label="종료 예정일"
+            minDate={this.state.startDate}
+            value={this.state.endDate}
+            onChange={(value) => this.setState({ endDate: value })}
+            style={{ width: '50%' }}
+            KeyboardButtonProps={{
+              'aria-label': 'change date',
+            }}
+          />
+          <KeyboardTimePicker
+            readOnly={this.state.startTime === null ? true : false}
+            margin="normal"
+            label="종료시간"
+            variant="inline"
+            value={this.state.endTime}
+            onChange={(value) => this.setState({ endTime: value })}
+            style={{ width: '50%' }}
+            KeyboardButtonProps={{
+              'aria-label': 'change time',
+            }}
+          />
           <Button
             variant="outlined"
             startIcon={<SaveIcon />}
@@ -78,7 +122,23 @@ class App extends React.Component {
             Save
           </Button>
         </div>
-        <div className="list_area">리스트 영역</div>
+        <div className="list_area">
+          <List>
+            {this.state.todoList.map((todoItem, idx) => {
+              const {
+                title, content, startDate, startTime, endDate, endTime
+              } = todoItem;
+              return (
+                <ListItem key={idx} role={undefined} dense button>
+                  <ListItemText
+                    primary={title}
+                    secondary={startDate?.format('yyyy-MM-DD') + ' ' + startTime?.format('HH:MM') + ' ~ ' + endDate?.format('yyyy-MM-DD') + ' ' + endTime?.format('HH:MM')}
+                  />
+                </ListItem>
+              )
+            })}
+          </List>
+        </div>
         <Typography variant="body2" align="center">
           {'Copyright ⓒ 서은기 ' + new Date().getFullYear() + '.'}
         </Typography>
