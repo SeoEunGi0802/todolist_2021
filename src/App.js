@@ -1,12 +1,14 @@
 import { Button, TextField, Typography } from '@material-ui/core';
 import { KeyboardDatePicker, KeyboardTimePicker } from '@material-ui/pickers';
 import React from 'react';
+import SaveIcon from '@material-ui/icons/Save';
 import './App.css';
 
 class App extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
+      todoList: [],
       title: "",
       content: "",
       startDate: null,
@@ -14,6 +16,20 @@ class App extends React.Component {
       endDate: null,
       endTime: null
     }
+  }
+
+  saveTodoList() {
+    const { todoList, title, content, startDate, startTime } = this.state;
+    todoList.push({ title, content, startDate, startTime });
+    this.setState({ todoList }, () => {
+      this.setState({
+        todoList: [],
+        title: "",
+        content: "",
+        startDate: null,
+        startTime: null,
+      })
+    });
   }
 
   render() {
@@ -53,6 +69,14 @@ class App extends React.Component {
               'aria-label': 'change time',
             }}
           />
+          <Button
+            variant="outlined"
+            startIcon={<SaveIcon />}
+            style={{ float: 'right' }}
+            onClick={() => this.saveTodoList()}
+          >
+            Save
+          </Button>
         </div>
         <div className="list_area">리스트 영역</div>
         <Typography variant="body2" align="center">
