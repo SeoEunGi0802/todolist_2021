@@ -1,6 +1,6 @@
 ---------------------------------------------------------------------------------------------------------------------------------------
 ## 0512
-    + material-ui 모듈을 사용하여 달력(App.js - KeyboardDatePicker)과 시계(App.js - KeyboardTimePicker)를 페이지에 추가하고 언어를 한국어(index.js - moment/locale/ko)로 변경
+ + material-ui 모듈을 사용하여 달력(App.js - KeyboardDatePicker)과 시계(App.js - KeyboardTimePicker)를 페이지에 추가하고 언어를 한국어(index.js - moment/locale/ko)로 변경
 ---------------------------------------------------------------------------------------------------------------------------------------
 # Getting Started with Create React App
 
