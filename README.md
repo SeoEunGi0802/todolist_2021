@@ -1,6 +1,15 @@
 ---------------------------------------------------------------------------------------------------------------------------------------
 ## 0602
- + 
+ + [Components and Props](https://ko.reactjs.org/docs/components-and-props.html)
+ + 컴포넌트를 통해 UI를 재사용 가능한 개별적인 여러 조각으로 나누고, 각 조각을 개별적으로 살펴볼 수 있도록 하는 방식
+    1. ["함수 컴포넌트"와 클래스 컴포넌트](https://ko.reactjs.org/docs/components-and-props.html#function-and-class-components)
+        - 데이터를 가진 하나의 “props” (props는 속성을 나타내는 데이터입니다) 객체 인자를 받은 후 React 엘리먼트를 반환
+    2. [컴포넌트 렌더링](https://ko.reactjs.org/docs/components-and-props.html#rendering-a-component)
+        - React 엘리먼트는 사용자 정의 컴포넌트로도 나타낼 수 있다.
+    3. [컴포넌트 합성](https://ko.reactjs.org/docs/components-and-props.html#composing-components)
+        - 자신의 출력에 다른 컴포넌트를 참조할 수 있다. 이는 모든 세부 단계에서 동일한 추상 컴포넌트를 사용할 수 있음을 의미
+    4. [컴포넌트 추출](https://ko.reactjs.org/docs/components-and-props.html#extracting-components)
+        - 컴포넌트를 여러 개의 작은 컴포넌트로 나누는 것
 ---------------------------------------------------------------------------------------------------------------------------------------
 ## 0526
  + 날짜와 시간 선택시 값이 변경되도록 함
