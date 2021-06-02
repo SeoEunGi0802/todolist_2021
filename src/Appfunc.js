@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 
 // function Hello(props) {
 //     return <h1>Hello, {props.name}</h1>;
@@ -39,14 +39,33 @@ function formatDate(date) {
 
 function Avatar(props) {
     const [count, setCount] = useState(0);
+    const [desc, setDesc] = useState('이미지 클릭 카운트');
+    const [contents, setContents] = useState([{ text: '아무문장1' }]);
+
+    useEffect(() => {
+        console.log("compoenetDidMount와 유사");
+    }, []);
+    useEffect(() => {
+        console.log("count가 변경됨");
+    }, [count]);
+    useEffect(() => {
+        console.log("desc가 변경됨");
+    }, [desc]);
     const { user } = props;
-    return (
+    return <>
         <img className="Avatar"
             src={user.avatarUrl}
             alt={user.name + count}
-            onClick={() => setCount(count + 1)}
+            onClick={() => {
+                setCount(count + 1);
+            }}
         />
-    );
+        <button onClick={() => {
+            setDesc(Math.random().toString(36).substring(7))
+        }}>DESC 변경</button>
+        <p>( {desc + ": " + count} )</p>
+        <p>{contents.text}</p>
+    </>
 }
 
 function UserInfo(props) {

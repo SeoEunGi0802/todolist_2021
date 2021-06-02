@@ -13,14 +13,13 @@
 
  ###### [Hook의 개요](https://ko.reactjs.org/docs/hooks-intro.html)
  + Hook은 React 버전 16.8부터 React 요소로 새로 추가, 기존 Class 바탕의 코드를 작성할 필요 없이 상태 값과 여러 React의 기능을 사용할 수 있다.
-    1. []()
-        - 
-    2. []()
-        - 
-    3. []()
-        - 
-    4. []()
-        - 
+    1. [State Hook](https://ko.reactjs.org/docs/hooks-overview.html#state-hook)
+        - Effect Hook, 즉 useEffect는 함수 컴포넌트 내에서 이런 side effects를 수행할 수 있게 해준다.
+    2. [Using the Effect Hook](https://ko.reactjs.org/docs/hooks-effect.html)
+        - 더욱 자세한 설명이 나와있다.
+
+ ###### [기존 App.js -> Appfunc.js의 형식으로 변환]
+ + 기존 TodoList를 출력하는 [App.js](/src/App.js) => [newApp.js](/src/newApp.js) 처럼 hook 형식으로 변형
 ---------------------------------------------------------------------------------------------------------------------------------------
 ## 0526
  + 날짜와 시간 선택시 값이 변경되도록 함
