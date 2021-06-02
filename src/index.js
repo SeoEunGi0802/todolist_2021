@@ -1,7 +1,8 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
-import App from './App';
+// import App from './App';
+import Welcome from './Appfunc';
 import reportWebVitals from './reportWebVitals';
 import { MuiPickersUtilsProvider } from '@material-ui/pickers';
 import MomentUtils from '@date-io/moment';
@@ -10,7 +11,7 @@ import "moment/locale/ko";
 ReactDOM.render(
   <MuiPickersUtilsProvider locale="ko" utils={MomentUtils}>
   <React.StrictMode>
-    <App />
+    <Welcome />
   </React.StrictMode>,
   </MuiPickersUtilsProvider>,
   document.getElementById('root')
