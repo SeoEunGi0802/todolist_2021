@@ -1,5 +1,7 @@
 ## 0609(0519 보강)
  + [ KeyboardDatePicker, list, InputArea div 부분 변경 ](/src/newApp.js)
+ + [ DateTimePicker 부분을 파일로 쪼개서 Import시켜 시각성 높이기 ](/src/components/DateTimePicker.js)
+ + [ InputArea 부분을 파일로 쪼개서 Import시켜 시각성 높이기 ](/src/components/InputArea.js)
 ---------------------------------------------------------------------------------------------------------------------------------------
 ## 0602
  ###### [Components and Props](https://ko.reactjs.org/docs/components-and-props.html)
@@ -35,6 +37,7 @@
 <details>
 <summary>Getting Started with Create React App</summary>
 <div markdown="Getting Started with Create React App">
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
@@ -105,5 +108,6 @@ This section has moved here: [https://facebook.github.io/create-react-app/docs/d
 ### `npm run build` fails to minify
 
 This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+
 </div>
 </details>
