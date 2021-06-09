@@ -2,6 +2,7 @@
  + [ KeyboardDatePicker, list, InputArea div 부분 변경 ](/src/newApp.js)
  + [ DateTimePicker 부분을 파일로 쪼개서 Import시켜 시각성 높이기 ](/src/components/DateTimePicker.js)
  + [ InputArea 부분을 파일로 쪼개서 Import시켜 시각성 높이기 ](/src/components/InputArea.js)
+ + [ ListArea 부분을 파일로 쪼개서 Import시켜 시각성 높이기 ](/src/components/ListArea.js)
 ---------------------------------------------------------------------------------------------------------------------------------------
 ## 0602
  ###### [Components and Props](https://ko.reactjs.org/docs/components-and-props.html)
