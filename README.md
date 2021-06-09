@@ -32,6 +32,9 @@
 ## 0512
  + material-ui 모듈을 사용하여 달력(App.js - KeyboardDatePicker)과 시계(App.js - KeyboardTimePicker)를 페이지에 추가하고 언어를 한국어(index.js - moment/locale/ko)로 변경
 ---------------------------------------------------------------------------------------------------------------------------------------
+<details>
+<summary>Getting Started with Create React App</summary>
+<div markdown="Getting Started with Create React App">
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
@@ -102,3 +105,5 @@ This section has moved here: [https://facebook.github.io/create-react-app/docs/d
 ### `npm run build` fails to minify
 
 This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+</div>
+</details>
