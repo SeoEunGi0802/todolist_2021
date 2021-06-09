@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
 import { Typography } from '@material-ui/core';
-import './App.css';
 import InputArea from './components/InputArea'
 import ListArea from './components/ListArea'
+import './App.css';
 
 function NewApp(props) {
     const [todoList, setTodoList] = useState([]);
