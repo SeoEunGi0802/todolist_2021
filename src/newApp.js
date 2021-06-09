@@ -53,8 +53,7 @@ const DateTimePicker = (props) => {
     </>
 }
 
-function NewApp(props) {
-    const [todoList, setTodoList] = useState([]);
+const InputArea = (props) => {
     const [title, setTitle] = useState("");
     const [content, setContent] = useState("");
     const [startDate, setStartDate] = useState(null);
@@ -62,6 +61,7 @@ function NewApp(props) {
     const [endDate, setEndDate] = useState(null);
     const [endTime, setEndTime] = useState(null);
     const [isError, setIsError] = useState(false);
+    const { todoList, changeTodoList } = props;
 
     const checkValidate = () => {
         if (!title || !content || !startDate || !startTime || !endDate || !endTime) {
@@ -76,7 +76,7 @@ function NewApp(props) {
 
     const saveTodoList = () => {
         if (checkValidate()) {
-            setTodoList([...todoList, { title: title.trim(), content: content.trim(), startDate, startTime, endDate, endTime }]);
+            changeTodoList([...todoList, { title: title.trim(), content: content.trim(), startDate, startTime, endDate, endTime }]);
             setTitle("");
             setContent("");
             setStartDate(null);
@@ -88,41 +88,46 @@ function NewApp(props) {
         }
     }
 
+    return <div className="input_area">
+        <TextField label="제목" helperText="TodoList 제목" size="normal" margin="normal" fullWidth required
+            value={title}
+            onChange={(e) => setTitle(e.target.value)}
+        />
+        <TextField label="상세내용" size="normal" margin="normal" fullWidth multiline
+            value={content}
+            onChange={(e) => setContent(e.target.value)}
+        />
+        <DateTimePicker
+            dateLabel="시작 예정일"
+            date={startDate}
+            timeLabel="시작 시간"
+            time={startTime}
+            changeDate={setStartDate}
+            changeTime={setStartTime} />
+        <DateTimePicker
+            dateLabel="종료 예정일"
+            date={endDate}
+            timeLabel="종료 시간"
+            time={endTime}
+            changeDate={setEndDate}
+            changeTime={setEndTime} />
+        <Button
+            variant="outlined"
+            startIcon={<SaveIcon />}
+            style={{ float: 'right' }}
+            onClick={() => saveTodoList()}
+        >
+            Save
+            </Button>
+    </div>
+}
+
+function NewApp(props) {
+    const [todoList, setTodoList] = useState([]);
     return <div className="App">
         <div className="header">TODO LIST</div>
-        <div className="input_area">
-            <TextField label="제목" helperText="TodoList 제목" size="normal" margin="normal" fullWidth required
-                value={title}
-                onChange={(e) => setTitle(e.target.value)}
-            />
-            <TextField label="상세내용" size="normal" margin="normal" fullWidth multiline
-                value={content}
-                onChange={(e) => setContent(e.target.value)}
-            />
-            <DateTimePicker
-                dateLabel="시작 예정일"
-                date={startDate}
-                timeLabel="시작 시간"
-                time={startTime}
-                changeDate={setStartDate}
-                changeTime={setStartTime} />
-            <DateTimePicker
-                dateLabel="종료 예정일"
-                date={endDate}
-                timeLabel="종료 시간"
-                time={endTime}
-                changeDate={setEndDate}
-                changeTime={setEndTime} />
-            <Button
-                variant="outlined"
-                startIcon={<SaveIcon />}
-                style={{ float: 'right' }}
-                onClick={() => saveTodoList()}
-            >
-                Save
-            </Button>
-        </div>
-
+        <InputArea todoList={todoList} changeTodoList={setTodoList}
+        />
         <ListArea list={todoList} />
         <Typography variant="body2" align="center">
             {'Copyright ⓒ 서은기 ' + new Date().getFullYear() + '.'}
