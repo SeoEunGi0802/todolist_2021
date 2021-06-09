@@ -1,3 +1,5 @@
+## 0609(0519 보강)
+ + [<list>, <KeyboardDatePicker> 부분 변경](/src/newApp.js)
 ---------------------------------------------------------------------------------------------------------------------------------------
 ## 0602
  ###### [Components and Props](https://ko.reactjs.org/docs/components-and-props.html)

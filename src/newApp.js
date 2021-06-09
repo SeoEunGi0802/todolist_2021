@@ -4,6 +4,55 @@ import { KeyboardDatePicker, KeyboardTimePicker } from '@material-ui/pickers';
 import SaveIcon from '@material-ui/icons/Save';
 import './App.css';
 
+function ListArea(props) {
+    return <div className="list_area">
+        <List>
+            {props.list.map((todoItem, idx) => {
+                const {
+                    title, startDate, startTime, endDate, endTime
+                } = todoItem;
+                return (
+                    <ListItem key={idx} role={undefined} dense button>
+                        <ListItemText
+                            primary={title}
+                            secondary={startDate?.format('yyyy-MM-DD') + ' ' + startTime?.format('HH:MM') + ' ~ ' + endDate?.format('yyyy-MM-DD') + ' ' + endTime?.format('HH:MM')}
+                        />
+                    </ListItem>
+                )
+            })}
+        </List>
+    </div>
+}
+
+const DateTimePicker = (props) => {
+    return <>
+        <KeyboardDatePicker
+            disableToolbar
+            variant="inline"
+            format="yyyy/MM/DD"
+            margin="normal"
+            label={props.dateLabel}
+            value={props.date}
+            onChange={(value) => props.changeDate(value)}
+            style={{ width: '50%' }}
+            KeyboardButtonProps={{
+                'aria-label': 'change date'
+            }}
+        />
+        <KeyboardTimePicker
+            margin="normal"
+            label={props.timeLabel}
+            variant="inline"
+            value={props.time}
+            onChange={(value) => props.changeTime(value)}
+            style={{ width: '50%' }}
+            KeyboardButtonProps={{
+                'aria-label': 'change time'
+            }}
+        />
+    </>
+}
+
 function NewApp(props) {
     const [todoList, setTodoList] = useState([]);
     const [title, setTitle] = useState("");
@@ -50,57 +99,20 @@ function NewApp(props) {
                 value={content}
                 onChange={(e) => setContent(e.target.value)}
             />
-            <KeyboardDatePicker
-                disableToolbar
-                variant="inline"
-                format="yyyy/MM/DD"
-                margin="normal"
-                label="시작 예정일"
-                value={startDate}
-                onChange={(value) => setStartDate(value)}
-                style={{ width: '50%' }}
-                KeyboardButtonProps={{
-                    'aria-label': 'change date'
-                }}
-            />
-            <KeyboardTimePicker
-                margin="normal"
-                label="시작시간"
-                variant="inline"
-                value={startTime}
-                onChange={(value) => setStartTime(value)}
-                style={{ width: '50%' }}
-                KeyboardButtonProps={{
-                    'aria-label': 'change time'
-                }}
-            />
-            <KeyboardDatePicker
-                disableToolbar
-                readOnly={startDate === null ? true : false}
-                variant="inline"
-                format="yyyy/MM/DD"
-                margin="normal"
-                label="종료 예정일"
-                minDate={startDate}
-                value={endDate}
-                onChange={(value) => setEndDate(value)}
-                style={{ width: '50%' }}
-                KeyboardButtonProps={{
-                    'aria-label': 'change date'
-                }}
-            />
-            <KeyboardTimePicker
-                readOnly={startTime === null ? true : false}
-                margin="normal"
-                label="종료시간"
-                variant="inline"
-                value={endTime}
-                onChange={(value) => setEndTime(value)}
-                style={{ width: '50%' }}
-                KeyboardButtonProps={{
-                    'aria-label': 'change time'
-                }}
-            />
+            <DateTimePicker
+                dateLabel="시작 예정일"
+                date={startDate}
+                timeLabel="시작 시간"
+                time={startTime}
+                changeDate={setStartDate}
+                changeTime={setStartTime} />
+            <DateTimePicker
+                dateLabel="종료 예정일"
+                date={endDate}
+                timeLabel="종료 시간"
+                time={endTime}
+                changeDate={setEndDate}
+                changeTime={setEndTime} />
             <Button
                 variant="outlined"
                 startIcon={<SaveIcon />}
@@ -110,23 +122,8 @@ function NewApp(props) {
                 Save
             </Button>
         </div>
-        <div className="list_area">
-            <List>
-                {todoList.map((todoItem, idx) => {
-                    const {
-                        title, startDate, startTime, endDate, endTime
-                    } = todoItem;
-                    return (
-                        <ListItem key={idx} role={undefined} dense button>
-                            <ListItemText
-                                primary={title}
-                                secondary={startDate?.format('yyyy-MM-DD') + ' ' + startTime?.format('HH:MM') + ' ~ ' + endDate?.format('yyyy-MM-DD') + ' ' + endTime?.format('HH:MM')}
-                            />
-                        </ListItem>
-                    )
-                })}
-            </List>
-        </div>
+
+        <ListArea list={todoList} />
         <Typography variant="body2" align="center">
             {'Copyright ⓒ 서은기 ' + new Date().getFullYear() + '.'}
         </Typography>
